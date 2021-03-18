@@ -32,6 +32,10 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& locale-gen en_US.UTF-8
 
+# install go
+RUN wget -c https://dl.google.com/go/go1.16.2.linux-amd64.tar.gz -O - | tar -xz -C /usr/local \
+	&& ln -s /usr/local/go/bin/go /usr/bin/go
+
 # Create the user which will run the SDK binaries.
 RUN useradd -c $DEV_USER_NAME \
 		-d /home/$DEV_USER \
